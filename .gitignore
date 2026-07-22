@@ -1,0 +1,49 @@
+# ─── Secrets & env ───────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# ─── Dependencies ────────────────────────────────
+node_modules/
+.pnp/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+vendor/
+target/
+
+# ─── Build output ────────────────────────────────
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+coverage/
+*.tsbuildinfo
+
+# ─── Logs & caches ───────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ─── OS & editor ─────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# ─── sdd-core ────────────────────────────────────
+# Completed plans can stay; nothing to ignore by default.

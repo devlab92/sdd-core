@@ -1,0 +1,18 @@
+# Cursor IDE Rules
+
+This project uses the sdd-core framework. The canonical rules live in `AGENTS.md`.
+
+Before any task:
+1. Read `AGENTS.md` — the single source of truth for all agent behavior.
+2. Read `sdd.config.md` — the operating mode (economy | balanced | full).
+3. Apply `CODING_PHILOSOPHY.md` — the mandatory 4-layer thinking model (Think → Structure → Scale → Research), in order.
+4. Load `sdd_summary/00_index.md` before scanning code.
+
+Hard rules:
+- Never write production code before a plan in `plans/active/` is APPROVED.
+- Run the 6-stage Quality Gate (see `.agents/skills/quality-gate/SKILL.md`).
+- After every task, run the Post-Task Protocol (doc check + CHANGELOG + commit). Deploy needs human approval.
+- If reality contradicts the plan, STOP and report — never improvise.
+
+For file-scoped rules, see `.cursor/rules/*.mdc`.
+Do not duplicate rules here — `AGENTS.md` is authoritative.

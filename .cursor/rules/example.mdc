@@ -1,0 +1,19 @@
+---
+description: Example scoped rule — applied only to files matching the glob below.
+globs:
+  - "src/**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Scoped rule (example)
+
+This file demonstrates Cursor's file-scoped rules (`.cursor/rules/*.mdc`). Scoped rules save
+tokens by loading only when a relevant file is in context, instead of on every request.
+
+When editing files matched by `globs` above:
+- Follow `AGENTS.md` and `CODING_PHILOSOPHY.md` (the 4 layers).
+- Component library first, inline UI never (Layer 3).
+- Semantic `id` + BEM class on interactive elements.
+
+> Duplicate and adapt this file per domain (e.g. `api.mdc` for `src/api/**`,
+> `ui.mdc` for `src/components/**`). Keep each rule short and glob-scoped.

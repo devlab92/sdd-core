@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+# Only one release at a time
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write        # create tags/releases
+  issues: write
+  pull-requests: write
+
+jobs:
+  release:
+    name: Semantic Release
+    runs-on: ubuntu-latest
+    # Skip release commits to avoid loops
+    if: "!contains(github.event.head_commit.message, 'chore(release)')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # semantic-release needs full history + tags
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # semantic-release computes the next version from conventional commits,
+      # updates CHANGELOG.md, tags, and publishes a GitHub Release.
+      - name: Install semantic-release
+        run: npm i -g semantic-release @semantic-release/changelog @semantic-release/git
+
+      - name: Run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
+
+      # ─────────────────────────────────────────────────────────────
+      # Provide a .releaserc (or release config) at repo root, e.g.:
+      #
+      # {
+      #   "branches": ["main"],
+      #   "plugins": [
+      #     "@semantic-release/commit-analyzer",
+      #     "@semantic-release/release-notes-generator",
+      #     ["@semantic-release/changelog", { "changelogFile": "CHANGELOG.md" }],
+      #     "@semantic-release/github",
+      #     ["@semantic-release/git", {
+      #       "assets": ["CHANGELOG.md"],
+      #       "message": "chore(release): ${nextRelease.version} [skip ci]"
+      #     }]
+      #   ]
+      # }
+      # ─────────────────────────────────────────────────────────────

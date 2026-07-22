@@ -1,0 +1,11 @@
+# CODEOWNERS — auto-assign reviewers by path.
+# Replace the handle below with the real GitHub username/team.
+
+# Default owner for everything:
+*                       @your-github-handle
+
+# The canonical rules deserve extra scrutiny:
+/AGENTS.md              @your-github-handle
+/CODING_PHILOSOPHY.md   @your-github-handle
+/.agents/               @your-github-handle
+/.github/workflows/     @your-github-handle

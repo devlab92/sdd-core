@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+# Cancel superseded runs on the same ref
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Lint · Types · Test · Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history (needed by some release/version tooling)
+
+      # ─────────────────────────────────────────────────────────────
+      # BOOTSTRAP fills the steps below for the detected stack.
+      # Example (Node.js) — uncomment and adapt:
+      #
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 20
+      #     cache: npm
+      # - run: npm ci
+      # - run: npm run lint
+      # - run: npm run typecheck
+      # - run: npm test -- --run
+      # - run: npm run build
+      #
+      # Example (Python) — uncomment and adapt:
+      #
+      # - uses: actions/setup-python@v5
+      #   with:
+      #     python-version: "3.12"
+      # - run: pip install -e ".[dev]"
+      # - run: ruff check .
+      # - run: mypy .
+      # - run: pytest
+      # ─────────────────────────────────────────────────────────────
+
+      - name: Placeholder (remove once stack steps are added)
+        run: echo "Configure CI steps for your stack via BOOTSTRAP_PROMPT.md"
+
+      # Optional: validate that all Markdown links resolve.
+      # - name: Check Markdown links
+      #   uses: gaurav-nelson/github-action-markdown-link-check@v1
